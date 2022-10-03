@@ -46,6 +46,11 @@ $hardGrey: #444;
     padding: 0;
 }
 
+@font-face {
+    font-family: "merienda";
+    src: url("/fonts/Merienda-Bold.woff") format("woff"),
+        url("/fonts/Merienda-Bold.ttf") format("truetype");
+}
 .banniere {
     display: flex;
     height: 400px;
@@ -54,6 +59,54 @@ $hardGrey: #444;
 
         white-space: normal;
     }
+    &__top {
+        @include flexJustCenter;
+        width: 80%;
+
+        &__titre {
+            @include flexCol;
+            @include flexJustCenter;
+        }
+    }
+}
+
+h1,
+h2 {
+    font-family: merienda, "Courier New", Courier, monospace;
+}
+
+h1 {
+    font-size: calc(0.325rem + 8vw);
+    @include noMnoP;
+    background: linear-gradient(
+        to right,
+        red 0%,
+        orange 20%,
+        green 40%,
+        teal 63%,
+        blue 75%,
+        purple 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: black 0.5px;
+    text-align: center;
+}
+
+h2 {
+    text-align: right;
+    @include noMnoP;
+    font-size: 1em;
+}
+
+.formulaire {
+    @include flexJustCenter;
+}
+
+article {
+    width: 55%;
+    margin: 1px;
 }
 
 /* Style the buttons that are used to open and close the accordion panel */
@@ -102,63 +155,9 @@ $hardGrey: #444;
     border-radius: 4px;
 }
 
-@font-face {
-    font-family: "merienda";
-    src: url("/fonts/Merienda-Bold.woff") format("woff"),
-        url("/fonts/Merienda-Bold.ttf") format("truetype");
-}
-
-h1,
-h2 {
-    font-family: merienda, "Courier New", Courier, monospace;
-}
-
 header {
     @include flexCol;
     @include flexJustCenter;
-}
-
-.top {
-    @include flexJustCenter;
-    width: 80%;
-}
-
-.titre {
-    @include flexCol;
-    @include flexJustCenter;
-}
-
-.formulaire {
-    @include flexJustCenter;
-}
-
-h1 {
-    font-size: calc(0.325rem + 8vw);
-    @include noMnoP;
-    background: linear-gradient(
-        to right,
-        red 0%,
-        orange 20%,
-        green 40%,
-        teal 63%,
-        blue 75%,
-        purple 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: black 0.5px;
-    text-align: center;
-}
-
-h2 {
-    text-align: right;
-    @include noMnoP;
-    font-size: 1em;
-}
-
-html {
-    height: 100%;
 }
 
 body {
@@ -227,11 +226,6 @@ body {
 .loupe {
     background: url("/images/loupe.svg") no-repeat left;
     background-size: 20px;
-}
-
-main {
-    @include RelativePos100;
-    width: 100%;
 }
 
 .footer {
@@ -322,26 +316,25 @@ a:link {
     text-decoration: none;
 }
 
-section {
-    width: 100%;
+.section {
+    @include RelativePos100;
     display: none;
     margin: auto;
-
     justify-content: center;
+
+    &__photo {
+        width: 30%;
+        margin: 5px;
+        margin-right: 15px;
+        text-align: start;
+        align-items: flex-start;
+    }
 }
 
 .sectionVisible {
     width: 100%;
     margin: auto;
     @include flexJustCenter;
-}
-
-.photo {
-    width: 30%;
-    margin: 5px;
-    margin-right: 15px;
-    text-align: start;
-    align-items: flex-start;
 }
 
 .score {
@@ -357,11 +350,6 @@ section {
 
 #imgProduct {
     width: 100%;
-}
-
-article {
-    width: 55%;
-    margin: 1px;
 }
 
 .allergen {
@@ -407,20 +395,26 @@ tbody {
 
 /*media inférieur a 576px de larger */
 @media (max-width: 576px) {
-    main,
-    section {
+    .section {
         @include flexCol;
         align-items: center;
-    }
-
-    section {
         display: none;
-    }
-
-    main {
         margin: 1px;
         padding: 1px;
         @include RelativePos100;
+
+        &__photo {
+            width: 95%;
+            margin: 1px;
+            @include flexJustCenter;
+            margin-bottom: 10px;
+        }
+    }
+
+    .sectionVisible {
+        width: 100%;
+        margin: auto;
+        @include flexJustCenter;
     }
 
     .score {
@@ -455,13 +449,6 @@ tbody {
     #imgProduct {
         width: 50%;
         // max-width: 350px;
-    }
-
-    .photo {
-        width: 95%;
-        margin: 1px;
-        @include flexJustCenter;
-        margin-bottom: 10px;
     }
 
     .modalDialog > div {
@@ -521,6 +508,11 @@ tbody {
             width: auto;
             margin-bottom: 30px;
         }
+        &__top {
+            margin-left: 25px;
+            @include flexJustCenter;
+            height: 20%;
+        }
     }
 
     .formulaire {
@@ -536,12 +528,6 @@ tbody {
             width: 100%;
             margin-top: 10px;
         }
-    }
-
-    .top {
-        margin-left: 25px;
-        @include flexJustCenter;
-        height: 20%;
     }
 
     h1 {

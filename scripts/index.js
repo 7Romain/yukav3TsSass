@@ -7,7 +7,7 @@ import { afficherCaracteristiques } from "./caracteristiques.js";
 
 genererAccordeon();
 
-const section = document.getElementById("section");
+const section = document.querySelector(".section");
 const code = document.getElementById("rechercher");
 const formulaire = document.querySelector(".formulaire__demande");
 const regex = /[\d]{8,13}/;

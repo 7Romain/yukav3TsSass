@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: "merienda";
+  src: url("/fonts/Merienda-Bold.woff") format("woff"), url("/fonts/Merienda-Bold.ttf") format("truetype");
+}
 .banniere {
   display: flex;
   height: 400px;
@@ -11,6 +15,51 @@
 .banniere__logo {
   display: flex;
   white-space: normal;
+}
+.banniere__top {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+}
+.banniere__top__titre {
+  flex-direction: column;
+  display: flex;
+  display: flex;
+  justify-content: center;
+}
+
+h1,
+h2 {
+  font-family: merienda, "Courier New", Courier, monospace;
+}
+
+h1 {
+  font-size: calc(0.325rem + 8vw);
+  padding: 0px;
+  margin: 0px;
+  background: linear-gradient(to right, red 0%, orange 20%, green 40%, teal 63%, blue 75%, purple 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: black 0.5px;
+  text-align: center;
+}
+
+h2 {
+  text-align: right;
+  padding: 0px;
+  margin: 0px;
+  font-size: 1em;
+}
+
+.formulaire {
+  display: flex;
+  justify-content: center;
+}
+
+article {
+  width: 55%;
+  margin: 1px;
 }
 
 /* Style the buttons that are used to open and close the accordion panel */
@@ -56,61 +105,11 @@
   border-radius: 4px;
 }
 
-@font-face {
-  font-family: "merienda";
-  src: url("/fonts/Merienda-Bold.woff") format("woff"), url("/fonts/Merienda-Bold.ttf") format("truetype");
-}
-h1,
-h2 {
-  font-family: merienda, "Courier New", Courier, monospace;
-}
-
 header {
   flex-direction: column;
   display: flex;
   display: flex;
   justify-content: center;
-}
-
-.top {
-  display: flex;
-  justify-content: center;
-  width: 80%;
-}
-
-.titre {
-  flex-direction: column;
-  display: flex;
-  display: flex;
-  justify-content: center;
-}
-
-.formulaire {
-  display: flex;
-  justify-content: center;
-}
-
-h1 {
-  font-size: calc(0.325rem + 8vw);
-  padding: 0px;
-  margin: 0px;
-  background: linear-gradient(to right, red 0%, orange 20%, green 40%, teal 63%, blue 75%, purple 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: black 0.5px;
-  text-align: center;
-}
-
-h2 {
-  text-align: right;
-  padding: 0px;
-  margin: 0px;
-  font-size: 1em;
-}
-
-html {
-  height: 100%;
 }
 
 body {
@@ -177,12 +176,6 @@ body {
 .loupe {
   background: url("/images/loupe.svg") no-repeat left;
   background-size: 20px;
-}
-
-main {
-  position: relative;
-  width: 100%;
-  width: 100%;
 }
 
 .footer {
@@ -273,11 +266,19 @@ a:link {
   text-decoration: none;
 }
 
-section {
+.section {
+  position: relative;
   width: 100%;
   display: none;
   margin: auto;
   justify-content: center;
+}
+.section__photo {
+  width: 30%;
+  margin: 5px;
+  margin-right: 15px;
+  text-align: start;
+  align-items: flex-start;
 }
 
 .sectionVisible {
@@ -285,14 +286,6 @@ section {
   margin: auto;
   display: flex;
   justify-content: center;
-}
-
-.photo {
-  width: 30%;
-  margin: 5px;
-  margin-right: 15px;
-  text-align: start;
-  align-items: flex-start;
 }
 
 .score {
@@ -309,11 +302,6 @@ section {
 
 #imgProduct {
   width: 100%;
-}
-
-article {
-  width: 55%;
-  margin: 1px;
 }
 
 .allergen {
@@ -356,20 +344,28 @@ tbody tr:nth-child(even) {
 /******************************************************************************************** */
 /*media inférieur a 576px de larger */
 @media (max-width: 576px) {
-  main,
-section {
+  .section {
     flex-direction: column;
     display: flex;
     align-items: center;
-  }
-  section {
     display: none;
-  }
-  main {
     margin: 1px;
     padding: 1px;
     position: relative;
     width: 100%;
+  }
+  .section__photo {
+    width: 95%;
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .sectionVisible {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
   }
   .score {
     flex-direction: column;
@@ -398,13 +394,6 @@ section {
   }
   #imgProduct {
     width: 50%;
-  }
-  .photo {
-    width: 95%;
-    margin: 1px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
   }
   .modalDialog > div {
     width: 250px;
@@ -460,6 +449,12 @@ td {
     width: auto;
     margin-bottom: 30px;
   }
+  .banniere__top {
+    margin-left: 25px;
+    display: flex;
+    justify-content: center;
+    height: 20%;
+  }
   .formulaire {
     margin-top: 10px;
     display: flex;
@@ -475,12 +470,6 @@ td {
     padding-left: 18px;
     width: 100%;
     margin-top: 10px;
-  }
-  .top {
-    margin-left: 25px;
-    display: flex;
-    justify-content: center;
-    height: 20%;
   }
   h1 {
     font-size: 4.5em;
