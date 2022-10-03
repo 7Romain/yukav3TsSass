@@ -9,7 +9,7 @@ genererAccordeon();
 
 const section = document.getElementById("section");
 const code = document.getElementById("rechercher");
-const formulaire = document.getElementById("demande");
+const formulaire = document.querySelector(".formulaire__demande");
 const regex = /[\d]{8,13}/;
 let resultat;
 

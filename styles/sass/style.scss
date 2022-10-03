@@ -46,6 +46,16 @@ $hardGrey: #444;
     padding: 0;
 }
 
+.banniere {
+    display: flex;
+    height: 400px;
+    &__logo {
+        display: flex;
+
+        white-space: normal;
+    }
+}
+
 /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
     @include background($grey);
@@ -108,20 +118,9 @@ header {
     @include flexJustCenter;
 }
 
-.logo {
-    display: flex;
-    padding: 5px;
-    height: 75%;
-}
-
 .top {
     @include flexJustCenter;
     width: 80%;
-}
-
-.banniere {
-    display: flex;
-    height: 400px;
 }
 
 .titre {
@@ -134,7 +133,7 @@ header {
 }
 
 h1 {
-    font-size: 3.2em;
+    font-size: calc(0.325rem + 8vw);
     @include noMnoP;
     background: linear-gradient(
         to right,
@@ -400,12 +399,22 @@ tbody {
 .gras {
     font-weight: bold;
 }
+
+/******************************************************************************************** */
+/******************************************************************************************** */
+/******************************************************************************************** */
+/******************************************************************************************** */
+
 /*media inférieur a 576px de larger */
 @media (max-width: 576px) {
     main,
     section {
         @include flexCol;
         align-items: center;
+    }
+
+    section {
+        display: none;
     }
 
     main {
@@ -494,8 +503,7 @@ tbody {
     #btn {
         block-size: 70px;
         font-size: 1.3em;
-        width: 199px;
-        margin-left: 10px;
+        width: 210px;
     }
 
     #rechercher {
@@ -507,26 +515,27 @@ tbody {
 
     .banniere {
         @include flexCol;
-        // height: 300px;
-    }
-
-    #demande {
-        @include flexCol;
-        @include flexJustCenter;
-        align-items: center;
-        padding-left: 18px;
-        width: 100%;
+        &__logo {
+            @include flexJustCenter;
+            height: 75%;
+            width: auto;
+            margin-bottom: 30px;
+        }
     }
 
     .formulaire {
-        margin-top: 2%;
+        margin-top: 10px;
         @include flexJustCenter;
         block-size: 250%;
-    }
 
-    .logo {
-        @include flexJustCenter;
-        height: 75%;
+        &__demande {
+            @include flexCol;
+            @include flexJustCenter;
+            align-items: center;
+            padding-left: 18px;
+            width: 100%;
+            margin-top: 10px;
+        }
     }
 
     .top {
@@ -536,8 +545,9 @@ tbody {
     }
 
     h1 {
-        font-size: 3.4em;
+        font-size: 4.5em;
         padding: 1px;
+        margin-top: 10px;
         margin: 0px;
         background: linear-gradient(
             to right,
@@ -554,7 +564,16 @@ tbody {
         -webkit-text-stroke: black 0.5px;
         text-align: center;
     }
+
+    h2 {
+        margin-bottom: 30px;
+    }
 }
+
+/******************************************************************************************** */
+/******************************************************************************************** */
+/******************************************************************************************** */
+/******************************************************************************************** */
 /*media supérieur a 1090px de larger */
 @media (min-width: 1090px) {
     .footer {
@@ -609,10 +628,17 @@ tbody {
         min-width: 175px;
     }
 
-    #demande {
+    .formulaire__demande {
         width: 100%;
         @include flexJustCenter;
         align-items: center;
         padding-left: 18px;
+    }
+    #imgNova {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
