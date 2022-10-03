@@ -51,6 +51,26 @@ $hardGrey: #444;
     src: url("/fonts/Merienda-Bold.woff") format("woff"),
         url("/fonts/Merienda-Bold.ttf") format("truetype");
 }
+
+body {
+    @include flexJustCenter;
+    background-image: url("/images/green.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#container {
+    @include flexCol;
+    min-width: 100%;
+    @include flexJustCenter;
+}
+
+header {
+    @include flexCol;
+    @include flexJustCenter;
+}
+
 .banniere {
     display: flex;
     height: 400px;
@@ -66,47 +86,152 @@ $hardGrey: #444;
         &__titre {
             @include flexCol;
             @include flexJustCenter;
+
+            > h1,
+            h2 {
+                font-family: merienda, "Courier New", Courier, monospace;
+            }
+
+            h1 {
+                font-size: calc(0.325rem + 8vw);
+                @include noMnoP;
+                background: linear-gradient(
+                    to right,
+                    red 0%,
+                    orange 20%,
+                    green 40%,
+                    teal 63%,
+                    blue 75%,
+                    purple 100%
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -webkit-text-stroke: black 0.5px;
+                text-align: center;
+            }
+
+            h2 {
+                text-align: right;
+                @include noMnoP;
+                font-size: 1em;
+            }
+            h1 {
+                font-size: calc(0.325rem + 8vw);
+                @include noMnoP;
+                background: linear-gradient(
+                    to right,
+                    red 0%,
+                    orange 20%,
+                    green 40%,
+                    teal 63%,
+                    blue 75%,
+                    purple 100%
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -webkit-text-stroke: black 0.5px;
+                text-align: center;
+            }
+
+            h2 {
+                text-align: right;
+                @include noMnoP;
+                font-size: 1em;
+            }
         }
     }
 }
 
-h1,
-h2 {
-    font-family: merienda, "Courier New", Courier, monospace;
-}
-
-h1 {
-    font-size: calc(0.325rem + 8vw);
-    @include noMnoP;
-    background: linear-gradient(
-        to right,
-        red 0%,
-        orange 20%,
-        green 40%,
-        teal 63%,
-        blue 75%,
-        purple 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: black 0.5px;
-    text-align: center;
-}
-
-h2 {
-    text-align: right;
-    @include noMnoP;
-    font-size: 1em;
-}
-
 .formulaire {
     @include flexJustCenter;
+
+    &__demande {
+        &__loupe {
+            background: url("/images/loupe.svg") no-repeat left;
+            background-size: 20px;
+        }
+        &__btn {
+            @include inlineBlkTxtCenter;
+            @include background($vert);
+            border-radius: 10px;
+            @include BorderDouble4(#cccccc);
+            color: $grey;
+            font-size: 17px;
+            padding: 3px;
+            width: 150px;
+            transition: all 0.5s;
+            cursor: pointer;
+            margin: 3px;
+
+            span {
+                cursor: pointer;
+                display: inline-block;
+                position: relative;
+                transition: 0.5s;
+
+                &:after {
+                    content: "\00bb";
+                    position: absolute;
+                    opacity: 0;
+                    top: 0;
+                    right: -20px;
+                    transition: 0.5s;
+                }
+            }
+
+            &:hover {
+                @include background(#4f7c55);
+
+                span {
+                    padding-right: 25px;
+
+                    &:after {
+                        opacity: 1;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        #rechercher {
+            height: 20px;
+            @include inlineBlkTxtCenter;
+            border-radius: 10px;
+            @include BorderDouble4($vert);
+            font-size: 15px;
+            padding: 3px;
+            width: 150px;
+            margin: 3px;
+            padding-left: 10px;
+        }
+    }
 }
 
-article {
-    width: 55%;
-    margin: 1px;
+.section {
+    @include RelativePos100;
+    display: none;
+    margin: auto;
+    justify-content: center;
+
+    &__photo {
+        width: 30%;
+        margin: 5px;
+        margin-right: 15px;
+        text-align: start;
+        align-items: flex-start;
+
+        #imgProduct {
+            width: 100%;
+        }
+    }
+}
+
+.sectionVisible {
+    width: 100%;
+    margin: auto;
+    @include flexJustCenter;
 }
 
 /* Style the buttons that are used to open and close the accordion panel */
@@ -155,77 +280,56 @@ article {
     border-radius: 4px;
 }
 
-header {
+article {
+    width: 55%;
+    margin: 1px;
+}
+
+.score {
     @include flexCol;
-    @include flexJustCenter;
+    width: 20%;
+    margin: 0px 15px 25px 25px;
+    align-items: flex-end;
+    img {
+        margin-bottom: 10px;
+        width: 100%;
+    }
 }
 
-body {
-    @include flexJustCenter;
-    background-image: url("/images/green.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+.allergen {
+    color: rgb(151, 99, 3);
+    font-weight: bold;
 }
 
-#btn {
-    @include inlineBlkTxtCenter;
-    @include background($vert);
-    border-radius: 10px;
-    @include BorderDouble4(#cccccc);
-    color: $grey;
-    font-size: 17px;
-    padding: 3px;
-    width: 150px;
-    transition: all 0.5s;
+.table-style {
+    border-collapse: collapse;
+    box-shadow: 0 5px 50px rgba(47, 136, 6, 0.15);
     cursor: pointer;
-    margin: 3px;
+    margin: 0px auto;
+    border: 2px solid $vert;
+    vertical-align: middle;
+}
 
-    span {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
+thead tr {
+    @include background($vert);
+    color: #fff;
+    text-align: left;
+}
 
-        &:after {
-            content: "\00bb";
-            position: absolute;
-            opacity: 0;
-            top: 0;
-            right: -20px;
-            transition: 0.5s;
-        }
-    }
+th,
+td {
+    padding: 15px 20px;
+    text-align: center;
+}
 
-    &:hover {
-        @include background(#4f7c55);
-
-        span {
-            padding-right: 25px;
-
-            &:after {
-                opacity: 1;
-                right: 0;
-            }
-        }
+tbody {
+    tr:nth-child(even) {
+        @include background(#f3f3f36e);
     }
 }
 
-#rechercher {
-    height: 20px;
-    @include inlineBlkTxtCenter;
-    border-radius: 10px;
-    @include BorderDouble4($vert);
-    font-size: 15px;
-    padding: 3px;
-    width: 150px;
-    margin: 3px;
-    padding-left: 10px;
-}
-
-.loupe {
-    background: url("/images/loupe.svg") no-repeat left;
-    background-size: 20px;
+.gras {
+    font-weight: bold;
 }
 
 .footer {
@@ -251,12 +355,6 @@ body {
             cursor: pointer;
         }
     }
-}
-
-#container {
-    @include flexCol;
-    min-width: 100%;
-    @include flexJustCenter;
 }
 
 .modalDialog {
@@ -316,78 +414,6 @@ a:link {
     text-decoration: none;
 }
 
-.section {
-    @include RelativePos100;
-    display: none;
-    margin: auto;
-    justify-content: center;
-
-    &__photo {
-        width: 30%;
-        margin: 5px;
-        margin-right: 15px;
-        text-align: start;
-        align-items: flex-start;
-    }
-}
-
-.sectionVisible {
-    width: 100%;
-    margin: auto;
-    @include flexJustCenter;
-}
-
-.score {
-    @include flexCol;
-    width: 20%;
-    margin: 0px 15px 25px 25px;
-    align-items: flex-end;
-    img {
-        margin-bottom: 10px;
-        width: 100%;
-    }
-}
-
-#imgProduct {
-    width: 100%;
-}
-
-.allergen {
-    color: rgb(151, 99, 3);
-    font-weight: bold;
-}
-
-.table-style {
-    border-collapse: collapse;
-    box-shadow: 0 5px 50px rgba(47, 136, 6, 0.15);
-    cursor: pointer;
-    margin: 0px auto;
-    border: 2px solid $vert;
-    vertical-align: middle;
-}
-
-thead tr {
-    @include background($vert);
-    color: #fff;
-    text-align: left;
-}
-
-th,
-td {
-    padding: 15px 20px;
-    text-align: center;
-}
-
-tbody {
-    tr:nth-child(even) {
-        @include background(#f3f3f36e);
-    }
-}
-
-.gras {
-    font-weight: bold;
-}
-
 /******************************************************************************************** */
 /******************************************************************************************** */
 /******************************************************************************************** */
@@ -395,6 +421,84 @@ tbody {
 
 /*media inférieur a 576px de larger */
 @media (max-width: 576px) {
+    .banniere {
+        @include flexCol;
+        &__logo {
+            @include flexJustCenter;
+            height: 75%;
+            width: auto;
+            margin-bottom: 30px;
+        }
+        &__top {
+            margin-left: 25px;
+            @include flexJustCenter;
+            height: 20%;
+
+            h1 {
+                font-size: 4.5em;
+                padding: 1px;
+                margin-top: 10px;
+                margin: 0px;
+                background: linear-gradient(
+                    to right,
+                    red 0%,
+                    orange 20%,
+                    green 40%,
+                    teal 63%,
+                    blue 75%,
+                    purple 100%
+                );
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                -webkit-text-stroke: black 0.5px;
+                text-align: center;
+            }
+
+            h2 {
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    .formulaire {
+        margin-top: 10px;
+        @include flexJustCenter;
+        block-size: 250%;
+
+        &__demande {
+            @include flexCol;
+            @include flexJustCenter;
+            align-items: center;
+            padding-left: 18px;
+            width: 100%;
+            margin-top: 10px;
+
+            &__loupe {
+                background: url("/images/loupe.svg") no-repeat left;
+                background-size: 20px;
+            }
+            &__btn {
+                block-size: 70px;
+                font-size: 1.3em;
+                width: 210px;
+            }
+
+            #rechercher {
+                font-size: 1em;
+                font-weight: bold;
+                min-width: 184px;
+                min-height: 25%;
+            }
+        }
+    }
+
+    article {
+        width: 95%;
+        margin: 1px;
+        font-size: 1em;
+    }
+
     .section {
         @include flexCol;
         align-items: center;
@@ -408,6 +512,10 @@ tbody {
             margin: 1px;
             @include flexJustCenter;
             margin-bottom: 10px;
+
+            #imgProduct {
+                width: 50%;
+            }
         }
     }
 
@@ -415,6 +523,10 @@ tbody {
         width: 100%;
         margin: auto;
         @include flexJustCenter;
+    }
+
+    .accordion {
+        font-size: 1.1em;
     }
 
     .score {
@@ -425,30 +537,15 @@ tbody {
         img {
             margin-bottom: 10px;
         }
-    }
 
-    #imgNutri,
-    #imgEcoscore {
-        width: 40%;
-    }
+        #imgNutri,
+        #imgEcoscore {
+            width: 40%;
+        }
 
-    #imgNova {
-        width: 20%;
-    }
-
-    article {
-        width: 95%;
-        margin: 1px;
-        font-size: 1em;
-    }
-
-    .accordion {
-        font-size: 1.1em;
-    }
-
-    #imgProduct {
-        width: 50%;
-        // max-width: 350px;
+        #imgNova {
+            width: 20%;
+        }
     }
 
     .modalDialog > div {
@@ -460,6 +557,12 @@ tbody {
         background: -moz-linear-gradient(#2edbe8, #01a6b2);
         background: -webkit-linear-gradient(#2edbe8, #01a6b2);
         background: -o-linear-gradient(#2edbe8, #01a6b2);
+    }
+
+    th,
+    td {
+        padding: 2px 7px;
+        text-align: center;
     }
 
     .footer {
@@ -480,80 +583,6 @@ tbody {
             }
         }
     }
-
-    th,
-    td {
-        padding: 2px 7px;
-        text-align: center;
-    }
-
-    #btn {
-        block-size: 70px;
-        font-size: 1.3em;
-        width: 210px;
-    }
-
-    #rechercher {
-        font-size: 1em;
-        font-weight: bold;
-        min-width: 184px;
-        min-height: 25%;
-    }
-
-    .banniere {
-        @include flexCol;
-        &__logo {
-            @include flexJustCenter;
-            height: 75%;
-            width: auto;
-            margin-bottom: 30px;
-        }
-        &__top {
-            margin-left: 25px;
-            @include flexJustCenter;
-            height: 20%;
-        }
-    }
-
-    .formulaire {
-        margin-top: 10px;
-        @include flexJustCenter;
-        block-size: 250%;
-
-        &__demande {
-            @include flexCol;
-            @include flexJustCenter;
-            align-items: center;
-            padding-left: 18px;
-            width: 100%;
-            margin-top: 10px;
-        }
-    }
-
-    h1 {
-        font-size: 4.5em;
-        padding: 1px;
-        margin-top: 10px;
-        margin: 0px;
-        background: linear-gradient(
-            to right,
-            red 0%,
-            orange 20%,
-            green 40%,
-            teal 63%,
-            blue 75%,
-            purple 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-text-stroke: black 0.5px;
-        text-align: center;
-    }
-
-    h2 {
-        margin-bottom: 30px;
-    }
 }
 
 /******************************************************************************************** */
@@ -562,26 +591,6 @@ tbody {
 /******************************************************************************************** */
 /*media supérieur a 1090px de larger */
 @media (min-width: 1090px) {
-    .footer {
-        &__liste {
-            > li {
-                display: inline;
-                border-radius: 10px;
-                @include border($vert);
-                padding: 1px 10px 1px 7px;
-                font-size: 1.3em;
-            }
-        }
-    }
-
-    article {
-        font-size: 1.4em;
-    }
-
-    .accordion {
-        font-size: 1.1em;
-    }
-
     h1 {
         font-size: 9.4em;
         padding: 10px;
@@ -602,29 +611,52 @@ tbody {
         text-align: center;
     }
 
-    #btn {
-        /* block-size: 70px; */
-        font-size: 1.3em;
-        width: 170px;
-    }
-
-    #rechercher {
-        font-size: 1em;
-        font-weight: bold;
-        min-width: 175px;
-    }
-
     .formulaire__demande {
         width: 100%;
         @include flexJustCenter;
         align-items: center;
         padding-left: 18px;
+
+        &__loupe {
+            background: url("/images/loupe.svg") no-repeat left;
+            background-size: 20px;
+        }
+        &__btn {
+            font-size: 1.3em;
+            width: 170px;
+        }
+        #rechercher {
+            font-size: 1em;
+            font-weight: bold;
+            min-width: 175px;
+        }
     }
+
+    .accordion {
+        font-size: 1.1em;
+    }
+
+    article {
+        font-size: 1.4em;
+    }
+
     #imgNova {
         width: 50%;
         display: flex;
         justify-content: center;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .footer {
+        &__liste {
+            > li {
+                display: inline;
+                border-radius: 10px;
+                @include border($vert);
+                padding: 1px 10px 1px 7px;
+                font-size: 1.3em;
+            }
+        }
     }
 }
