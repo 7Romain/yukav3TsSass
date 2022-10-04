@@ -300,7 +300,10 @@ header {
             border-radius: 15px;
             border: solid 2px $vert;
             @media (max-width: 576px) {
-                width: 50%;
+                max-width: 50%;
+                display: flex;
+                justify-content: center;
+                margin: auto;
             }
         }
     }
