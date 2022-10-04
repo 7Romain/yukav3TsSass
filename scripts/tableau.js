@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /**
  *Creer le tableau nutritionnel et le remplit si les info existent.
  * @param {*} resultat = json du produit

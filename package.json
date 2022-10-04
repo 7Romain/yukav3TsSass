@@ -75,6 +75,7 @@
     },
     "homepage": "https://github.com/7Romain/yukav3TsSass#readme",
     "dependencies": {
+        "quicktype": "^15.1.0",
         "sass": "^1.55.0"
     }
 }

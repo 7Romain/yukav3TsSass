@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 /**
  *afficher la liste des ingrédients si elle existe.
  * @param {*} resultat  = json du produit
