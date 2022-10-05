@@ -10,7 +10,14 @@
         "lint:css": "npx stylelint styles/*.css --formatter verbose",
         "lint:html": "npx htmlhint **/*.html --ignore coverage/**/*.html, hint-report/**/*.html",
         "checkPrettier": "npx prettier --check index.html",
-        "scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css"
+        "watch-tsWatch": "tsc --watch ./scripts/ts/index.ts --outDir ./scripts/js",
+        "watch-tsc2": "tsc --watch ./scripts/ts/accordeon.ts --outDir ./scripts/js",
+        "watch-tsc3": "tsc --watch ./scripts/ts/caracteristiques.ts --outDir ./scripts/js",
+        "watch-tsc4": "tsc --watch ./scripts/ts/images.ts --outDir ./scripts/js",
+        "watch-tsc5": "tsc --watch ./scripts/ts/ingredients.ts --outDir ./scripts/js",
+        "watch-tsc6": "tsc --watch ./scripts/ts/tableau.ts --outDir ./scripts/js",
+        "watch-scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css",
+        "start": "concurrently \"npm:watch-*\""
     },
     "repository": {
         "type": "git",
@@ -68,6 +75,7 @@
         "stylelint-config-recommended": "^9.0.0",
         "stylelint-config-recommended-scss": "^7.0.0",
         "stylelint-scss": "^4.3.0",
+        "typescript": "^4.8.4",
         "vscode-webhint": "^2.1.0"
     },
     "bugs": {
