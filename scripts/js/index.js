@@ -1,4 +1,5 @@
-var genererAccordeon = function () {
+// import { genererAccordeon } from "./accordeon.js";
+function genererAccordeon() {
     var accordeon = document.getElementsByClassName("accordion");
     var _loop_1 = function (element) {
         element.addEventListener("click", function () {
@@ -19,10 +20,21 @@ var genererAccordeon = function () {
         var element = accordeon_1[_i];
         _loop_1(element);
     }
-};
+}
 genererAccordeon();
+var lancement = function (codeBarre) {
+    fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+        var prod = new Produit(data);
+        prod.afficherTableau(prod.getNutriments());
+        afficherCaracteristiques(prod);
+        afficherImages(prod);
+        afficherIngredients(prod);
+    });
+};
 var Produit = /** @class */ (function () {
-    function Produit(codeBarre) {
+    function Produit(resultat) {
         this.nom = "";
         this.marque = "";
         this.quantite = 0;
@@ -68,8 +80,7 @@ var Produit = /** @class */ (function () {
                 return "";
             }
         };
-        this.afficherTableau = function (nutriments) {
-            var _a, _b, _c, _d;
+        this.afficherTableau = function (result) {
             var tableNut = document.getElementById("tableNutri");
             tableNut.innerHTML = "";
             var tableauNutri = document.createElement("table");
@@ -79,52 +90,35 @@ var Produit = /** @class */ (function () {
             tableauNutri.appendChild(thead);
             tableauNutri.appendChild(tbody);
             tableNut.appendChild(tableauNutri);
-            var row1 = document.createElement("tr");
-            var heading1 = document.createElement("th");
-            heading1.innerHTML = " ";
-            var heading2 = document.createElement("th");
-            if (nutriments.get(" ")) {
-                heading2.innerHTML = (_b = (_a = nutriments.get(" ")) === null || _a === void 0 ? void 0 : _a.toString()) !== null && _b !== void 0 ? _b : " ";
+            result.forEach(function (value, key) {
+                var row1 = document.createElement("tr");
+                var heading1;
+                if (heading1 === undefined) {
+                    heading1 = document.createElement("th");
+                }
+                else {
+                    heading1 = document.createElement("td");
+                }
+                heading1.innerHTML = key;
+                var heading2;
+                if (heading2 === undefined) {
+                    heading2 = document.createElement("th");
+                }
+                else {
+                    heading2 = document.createElement("td");
+                }
+                heading2.innerHTML = value;
                 row1.appendChild(heading1);
                 row1.appendChild(heading2);
-                thead.appendChild(row1);
-                // let compteur: number =0;
-                for (var element in nutriments) {
-                    // let nomRow: string = "row" + numberEnumValues.toString();
-                    // let nomRowData1:string = nomRow + "Data1";
-                    var row2 = document.createElement("tr");
-                    var row2Data1 = document.createElement("td");
-                    row2Data1.innerHTML = element;
-                    var row2Data2 = document.createElement("td");
-                    row2Data2.innerHTML =
-                        (_d = (_c = nutriments.get("Energie")) === null || _c === void 0 ? void 0 : _c.toString()) !== null && _d !== void 0 ? _d : "Energie";
-                    row2.appendChild(row2Data1);
-                    row2.appendChild(row2Data2);
-                    tbody.appendChild(row2);
+                console.log(thead.firstChild);
+                if (thead.firstChild === null) {
+                    thead.appendChild(row1);
                 }
-            }
+                else {
+                    tbody.appendChild(row1);
+                }
+            });
         };
-        var resultat;
-        var nomTaxi;
-        fetch("http://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
-            .then(function (response) { return response.json(); })
-            .then(function (data) {
-            resultat = data;
-            if (!resultat.product._id) {
-                alert("Le produit n'est pas présent dans la base de données");
-            }
-            else {
-                console.log("ok");
-            }
-            console.table(resultat.product);
-            console.log(resultat.product.categories);
-            console.log(resultat.product.product_name_fr);
-            console.log(resultat.product._id);
-            nomTaxi = resultat.product.product_name_fr;
-        })["catch"](function (err) {
-            alert("Le produit n'est pas présent dans la base de données");
-            console.log(err.message);
-        });
         if (resultat.product.product_name_fr) {
             this.nom = resultat.product.product_name_fr;
         }
@@ -184,7 +178,7 @@ var Produit = /** @class */ (function () {
                     ".svg";
         }
         if (resultat.product.ecoscore_grade) {
-            this.imageNutri =
+            this.imageEco =
                 "/images/ecoscore-" + resultat.product.ecoscore_grade + ".svg";
         }
         if (resultat.product.nova_group) {
@@ -270,59 +264,8 @@ var Produit = /** @class */ (function () {
     Produit.prototype.getImageProduit = function () {
         return this.imageProduit;
     };
-    Produit.prototype.getCodeBarre = function () {
-        return this.codeBarre;
-    };
     Produit.prototype.getNutriments = function () {
         return this.nutriments;
-    };
-    Produit.prototype.setNom = function (Nom) {
-        this.nom = Nom;
-    };
-    Produit.prototype.setMarque = function (Marque) {
-        this.marque = Marque;
-    };
-    Produit.prototype.setQuantite = function (Quantite) {
-        this.quantite = Quantite;
-    };
-    Produit.prototype.setConditionnement = function (Conditionnement) {
-        this.conditionnement = Conditionnement;
-    };
-    Produit.prototype.setCategories = function (Categories) {
-        this.categories = Categories;
-    };
-    Produit.prototype.setPreparation = function (Preparation) {
-        this.preparation = Preparation;
-    };
-    Produit.prototype.setTraces = function (Traces) {
-        this.traces = Traces;
-    };
-    Produit.prototype.setMagasins = function (Magasins) {
-        this.magasins = Magasins;
-    };
-    Produit.prototype.setConservations = function (Conservations) {
-        this.conservations = Conservations;
-    };
-    Produit.prototype.setIngredient = function (Ingredient) {
-        this.ingredients = Ingredient;
-    };
-    Produit.prototype.setImageProduit = function (imageProduit) {
-        this.imageProduit = imageProduit;
-    };
-    Produit.prototype.setImageNova = function (imageNova) {
-        this.imageNova = imageNova;
-    };
-    Produit.prototype.setImageEco = function (imageEco) {
-        this.imageEco = imageEco;
-    };
-    Produit.prototype.setImageNutri = function (imageNutri) {
-        this.imageNutri = imageNutri;
-    };
-    Produit.prototype.setCodeBarre = function (codeBarre) {
-        this.codeBarre = codeBarre;
-    };
-    Produit.prototype.setNutriments = function (nutriments) {
-        this.nutriments = nutriments;
     };
     return Produit;
 }());
@@ -396,22 +339,17 @@ var afficherCaracteristiques = function (prod) {
 };
 var afficherImages = function (prod) {
     var imgProduct = document.getElementById("imgProduct");
-    imgProduct.setAttribute("src", prod.getImageProduit.toString());
+    imgProduct.setAttribute("src", prod.getImageProduit());
     var imgNutri = document.getElementById("imgNutri");
-    imgNutri.setAttribute("src", prod.getImageNutri.toString());
+    imgNutri.setAttribute("src", prod.getImageNutri());
     var imgNova = document.getElementById("imgNova");
-    imgNova.setAttribute("src", prod.getImageNova.toString());
+    imgNova.setAttribute("src", prod.getImageNova());
     var imgEcoscore = document.getElementById("imgEcoscore");
-    imgEcoscore.setAttribute("src", prod.getImageEco.toString());
+    imgEcoscore.setAttribute("src", prod.getImageEco());
 };
 var afficherIngredients = function (prod) {
     var ingredients = document.getElementById("listeIngredients");
     ingredients.innerHTML = prod.getIngredient();
-};
-var afficher = function (prod) {
-    afficherCaracteristiques(prod);
-    afficherImages(prod);
-    afficherIngredients(prod);
 };
 /**
  * Ajoute un écouteur sur le bouton rechercher qui lance la création de l'objet produit  et
@@ -421,9 +359,7 @@ formulaire === null || formulaire === void 0 ? void 0 : formulaire.addEventListe
     var codeBarre = Number(code.value);
     if (regex.test(codeBarre.toString())) {
         e.preventDefault();
-        var prod = new Produit(codeBarre);
-        prod.afficherTableau(prod.getNutriments);
-        afficher(prod);
+        lancement(codeBarre);
         section.classList.add("sectionVisible");
     }
     else {

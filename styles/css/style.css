@@ -423,6 +423,7 @@ th,
 td {
   padding: 10px 9px;
   text-align: center;
+  font-weight: normal;
 }
 @media (max-width: 576px) {
   th,
