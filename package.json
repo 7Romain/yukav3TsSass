@@ -10,11 +10,18 @@
         "lint:css": "npx stylelint styles/*.css --formatter verbose",
         "lint:html": "npx htmlhint **/*.html --ignore coverage/**/*.html, hint-report/**/*.html",
         "checkPrettier": "npx prettier --check index.html",
-        "scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css"
+        "watch-tsWatch": "tsc --watch ./scripts/ts/index.ts --outDir ./scripts/js",
+        "watch-tsc2": "tsc --watch ./scripts/ts/accordeon.ts --outDir ./scripts/js",
+        "watch-tsc3": "tsc --watch ./scripts/ts/caracteristiques.ts --outDir ./scripts/js",
+        "watch-tsc4": "tsc --watch ./scripts/ts/images.ts --outDir ./scripts/js",
+        "watch-tsc5": "tsc --watch yukav3TsSassingredients.ts --outDir ./scripts/js",
+        "watch-scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css",
+        "start": "concurrently \"npm:watch-*\"",
+        "TscCompiler": "tsc --out ../js/index.js ./accordeon.ts ./Produit.ts ./images.ts ./caracteristiques.ts ./ingredients.ts ./index.ts"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/7Romain/yukav3TsSass.git"
+        "url": "https://github.com/7Romain/yukav3TsSass.git"
     },
     "keywords": [
         "foodfact",
@@ -32,6 +39,7 @@
         "@hint/hint-typescript-config": "^2.5.9",
         "@testing-library/dom": "^8.16.0",
         "@testing-library/jest-dom": "^5.16.4",
+        "@types/node": "^18.8.2",
         "@typescript-eslint/eslint-plugin": "^5.30.6",
         "@typescript-eslint/parser": "^5.31.0",
         "autoprefixer": "^10.4.7",
@@ -68,6 +76,7 @@
         "stylelint-config-recommended": "^9.0.0",
         "stylelint-config-recommended-scss": "^7.0.0",
         "stylelint-scss": "^4.3.0",
+        "typescript": "^4.8.4",
         "vscode-webhint": "^2.1.0"
     },
     "bugs": {
@@ -75,6 +84,9 @@
     },
     "homepage": "https://github.com/7Romain/yukav3TsSass#readme",
     "dependencies": {
+        "@types/express": "^4.17.14",
+        "axios": "^1.0.0",
+        "node-fetch": "^3.2.10",
         "quicktype": "^15.1.0",
         "sass": "^1.55.0"
     }

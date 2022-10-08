@@ -271,7 +271,10 @@ header {
 }
 @media (max-width: 576px) {
   .section__photo #imgProduct {
-    width: 50%;
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
   }
 }
 
@@ -420,6 +423,7 @@ th,
 td {
   padding: 10px 9px;
   text-align: center;
+  font-weight: normal;
 }
 @media (max-width: 576px) {
   th,
