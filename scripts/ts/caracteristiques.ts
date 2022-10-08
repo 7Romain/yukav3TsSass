@@ -1,6 +1,4 @@
-import { Produit } from "./Produit";
-
-export const afficherCaracteristiques = function (prod: Produit): void {
+const afficherCaracteristiques = function (prod: Produit): void {
     const caracteristiques = document.getElementById("carac") as HTMLElement;
     let texte: string = "";
     if (prod.getNom()) {
@@ -18,7 +16,6 @@ export const afficherCaracteristiques = function (prod: Produit): void {
             prod.getMarque() +
             "<br /><br />";
     }
-
     if (prod.getQuantite()) {
         texte +=
             "<span class= 'gras' >Quantité : </span>" +

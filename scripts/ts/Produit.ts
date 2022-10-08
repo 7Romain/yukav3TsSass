@@ -1,4 +1,4 @@
-export class Produit {
+class Produit {
     private nom: string = "";
     private marque: string = "";
     private quantite: number = 0;
@@ -15,9 +15,8 @@ export class Produit {
     private imageNova: string = "/images/nova-group-unknown.svg";
     private imageEco: string = "/images/ecoscore-unknown.svg";
     private nutriments: Map<string, string | number> = new Map();
-
     /**
-     * Test pour éviter d'afficher undefind.
+     * Test pour éviter d'afficher undefind
      * @param {*} valeur
      * @return {*}
      */
@@ -28,12 +27,12 @@ export class Produit {
             return "?";
         }
     };
-
     /**
      * Test pour éviter d'afficher undefind.
      * @param {*} valeur
      * @return {*}
      */
+
     testModificateur = function (valeur: string | number | undefined) {
         if (valeur === ">") {
             return ">";
@@ -54,10 +53,11 @@ export class Produit {
         tableauNutri.appendChild(thead);
         tableauNutri.appendChild(tbody);
         tableNut.appendChild(tableauNutri);
-        result.forEach(function (value: string, key: string) {
+
+        result.forEach(function (value, key) {
             const row1: HTMLElement = document.createElement("tr");
 
-            let heading1: HTMLTableCellElement;
+            let heading1;
 
             if (heading1 === undefined) {
                 heading1 = document.createElement("th");
@@ -66,14 +66,14 @@ export class Produit {
             }
 
             heading1.innerHTML = key;
-            let heading2: HTMLElement;
+            let heading2;
             if (heading2 === undefined) {
                 heading2 = document.createElement("th");
             } else {
                 heading2 = document.createElement("td");
             }
 
-            heading2.innerHTML = value;
+            heading2.innerHTML = value.toString();
             row1.appendChild(heading1);
             row1.appendChild(heading2);
             console.log(thead.firstChild);

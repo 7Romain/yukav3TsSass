@@ -334,6 +334,7 @@ var afficherIngredients = function (prod) {
     var ingredients = document.getElementById("listeIngredients");
     ingredients.innerHTML = prod.getIngredient();
 };
+//
 genererAccordeon();
 var lancement = function (codeBarre) {
     fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
@@ -346,6 +347,7 @@ var lancement = function (codeBarre) {
         afficherIngredients(prod);
     });
 };
+//
 var section = document.querySelector(".section");
 var code = document.getElementById("rechercher");
 var formulaire = document.querySelector(".formulaire__demande");

@@ -1,9 +1,9 @@
-export function genererAccordeon() {
+function genererAccordeon() {
     const accordeon: any = document.getElementsByClassName("accordion");
     for (const element of accordeon) {
         element.addEventListener("click", function () {
             /* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
+    to highlight the button that control the panel */
             element.classList.toggle("active");
 
             /* Toggle between hiding and showing the active panel */

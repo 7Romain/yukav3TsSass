@@ -1,11 +1,4 @@
-import { Produit } from "./Produit";
-import { genererAccordeon } from "./accordeon.js";
-import { afficherImages } from "./images.js";
-import { afficherCaracteristiques } from "./caracteristiques.js";
-import { afficherIngredients } from "./ingredients.js";
-
 genererAccordeon();
-
 const lancement = function (codeBarre: number) {
     fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
         .then((response) => response.json())
@@ -29,7 +22,7 @@ const formulaire: HTMLFormElement = document.querySelector(
 const regex: RegExp = /[0-9]{8,13}/;
 
 /**
- * Ajoute un écouteur sur le bouton rechercher qui lance la création de l'objet produit  et
+ * Ajoute un écouteur sur le bouton rechercher qui lance la création de l'objet produit et
  * rend visible la fiche produit.
  */
 

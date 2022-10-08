@@ -14,10 +14,10 @@
         "watch-tsc2": "tsc --watch ./scripts/ts/accordeon.ts --outDir ./scripts/js",
         "watch-tsc3": "tsc --watch ./scripts/ts/caracteristiques.ts --outDir ./scripts/js",
         "watch-tsc4": "tsc --watch ./scripts/ts/images.ts --outDir ./scripts/js",
-        "watch-tsc5": "tsc --watch ./scripts/ts/ingredients.ts --outDir ./scripts/js",
-        "watch-tsc6": "tsc --watch ./scripts/ts/tableau.ts --outDir ./scripts/js",
+        "watch-tsc5": "tsc --watch yukav3TsSassingredients.ts --outDir ./scripts/js",
         "watch-scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css",
-        "start": "concurrently \"npm:watch-*\""
+        "start": "concurrently \"npm:watch-*\"",
+        "TscCompiler": "tsc --out ../js/index.js ./accordeon.ts ./Produit.ts ./images.ts ./caracteristiques.ts ./ingredients.ts ./index.ts"
     },
     "repository": {
         "type": "git",

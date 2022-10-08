@@ -1,5 +1,4 @@
-import { Produit } from "./Produit";
-export const afficherImages = function (prod: Produit): void {
+const afficherImages = function (prod: Produit): void {
     const imgProduct = document.getElementById("imgProduct") as HTMLElement;
     imgProduct.setAttribute("src", prod.getImageProduit());
 
