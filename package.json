@@ -87,7 +87,6 @@
         "@types/express": "^4.17.14",
         "axios": "^1.0.0",
         "node-fetch": "^3.2.10",
-        "quicktype": "^15.1.0",
         "sass": "^1.55.0"
     }
 }

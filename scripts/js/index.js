@@ -1,5 +1,6 @@
 function genererAccordeon() {
     var accordeon = document.getElementsByClassName("accordion");
+    var accordeon2 = Array.from(accordeon);
     var _loop_1 = function (element) {
         element.addEventListener("click", function () {
             /* Toggle between adding and removing the "active" class,
@@ -15,8 +16,8 @@ function genererAccordeon() {
             }
         });
     };
-    for (var _i = 0, accordeon_1 = accordeon; _i < accordeon_1.length; _i++) {
-        var element = accordeon_1[_i];
+    for (var _i = 0, accordeon2_1 = accordeon2; _i < accordeon2_1.length; _i++) {
+        var element = accordeon2_1[_i];
         _loop_1(element);
     }
 }
