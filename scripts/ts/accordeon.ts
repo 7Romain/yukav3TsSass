@@ -1,5 +1,7 @@
 function genererAccordeon() {
-    const accordeon: any = document.getElementsByClassName("accordion");
+    const accordeon = document.getElementsByClassName(
+        "accordion"
+    ) as HTMLCollectionOf<HTMLElement>;
     for (const element of accordeon) {
         element.addEventListener("click", function () {
             /* Toggle between adding and removing the "active" class,
