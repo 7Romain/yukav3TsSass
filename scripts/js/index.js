@@ -24,7 +24,7 @@ var Produit = /** @class */ (function () {
     function Produit(resultat) {
         this.nom = "";
         this.marque = "";
-        this.quantite = 0;
+        this.quantite = "";
         this.conditionnement = "";
         this.categories = "";
         this.preparation = "";
@@ -335,8 +335,43 @@ var afficherIngredients = function (prod) {
     ingredients.innerHTML = prod.getIngredient();
 };
 genererAccordeon();
+var listeFields = [
+    "&fields=",
+    "product_name_fr",
+    "product_name_en",
+    "brands_imported",
+    "brands",
+    "quantity",
+    "packaging_text_fr",
+    "categories_old",
+    "preparation_fr",
+    "traces_imported",
+    "stores",
+    "conservation_conditions_fr",
+    "ingredients_text_with_allergens_fr",
+    "Ingredients_text_en",
+    "image_small_url",
+    "nutriscore_grade",
+    "ecoscore_grade",
+    "nova_group",
+    "nutrition_data_prepared_per",
+    "fat_100g",
+    "energy-kj",
+    "saturated-fat_100g",
+    "carbohydrates_100g",
+    "sugars_100g",
+    "fiber_modifier",
+    "fiber_100g",
+    "proteins_100g",
+    "salt_100g",
+    "alcohol",
+    "fruits-vegetables-nuts-estimate-from-ingredients_100g",
+];
 var lancement = function (codeBarre) {
-    fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
+    fetch("https://fr.openfoodfacts.org/api/v2/product/" +
+        listeFields.toString +
+        codeBarre)
+        //@TODO: ajouter une verification du status : 1 avant de creer le produit
         .then(function (response) { return response.json(); })
         .then(function (data) {
         var prod = new Produit(data);

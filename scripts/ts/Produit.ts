@@ -1,7 +1,7 @@
 class Produit {
     private nom: string = "";
     private marque: string = "";
-    private quantite: number = 0;
+    private quantite: string = "";
     private conditionnement: string = "";
     private categories: string = "";
     private preparation: string = "";
@@ -85,7 +85,7 @@ class Produit {
         });
     };
 
-    public constructor(resultat: any) {
+    public constructor(resultat: Requetes) {
         if (resultat.product.product_name_fr) {
             this.nom = resultat.product.product_name_fr;
         } else if (resultat.product.product_name_en) {
@@ -261,7 +261,7 @@ class Produit {
         return this.marque;
     }
 
-    public getQuantite(): number {
+    public getQuantite(): string {
         return this.quantite;
     }
 

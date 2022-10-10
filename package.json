@@ -17,7 +17,7 @@
         "watch-tsc5": "tsc --watch yukav3TsSassingredients.ts --outDir ./scripts/js",
         "watch-scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css",
         "start": "concurrently \"npm:watch-*\"",
-        "TscCompiler": "tsc --out ../js/index.js ./accordeon.ts ./Produit.ts ./images.ts ./caracteristiques.ts ./ingredients.ts ./index.ts"
+        "TscCompiler": "cd scripts/ts && tsc --out ../js/index.js ./accordeon.ts ./Produit.ts ./images.ts ./caracteristiques.ts ./ingredients.ts ./index.ts"
     },
     "repository": {
         "type": "git",
@@ -39,7 +39,7 @@
         "@hint/hint-typescript-config": "^2.5.9",
         "@testing-library/dom": "^8.16.0",
         "@testing-library/jest-dom": "^5.16.4",
-        "@types/node": "^18.8.2",
+        "@types/node": "^18.8.3",
         "@typescript-eslint/eslint-plugin": "^5.30.6",
         "@typescript-eslint/parser": "^5.31.0",
         "autoprefixer": "^10.4.7",
