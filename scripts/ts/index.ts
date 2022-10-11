@@ -71,20 +71,27 @@ type Requetes = {
 };
 
 const lancement = function (codeBarre: number) {
-    fetch(
-        "https://fr.openfoodfacts.org/api/v2/product/" +
-            listeFields.toString +
-            codeBarre
-    )
-        //@TODO: ajouter une verification du status : 1 avant de creer le produit
+    fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
         .then((response) => response.json())
         .then(function (data: Requetes) {
-            const prod: Produit = new Produit(data);
+            if (data.status === 1) {
+                console.log(listeFields.toString());
+                console.table(data);
+                console.log(data);
 
-            prod.afficherTableau(prod.getNutriments());
-            afficherCaracteristiques(prod);
-            afficherImages(prod);
-            afficherIngredients(prod);
+                const prod: Produit = new Produit(data);
+
+                prod.afficherTableau(prod.getNutriments());
+                afficherCaracteristiques(prod);
+                afficherImages(prod);
+                afficherIngredients(prod);
+            } else {
+                alert("Le produit n'est pas présent dans la base de données");
+            }
+        })
+        .catch(function (err) {
+            alert("Le produit n'est pas présent dans la base de données");
+            console.log(err.message);
         });
 };
 

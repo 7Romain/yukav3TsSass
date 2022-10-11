@@ -98,7 +98,6 @@ var Produit = /** @class */ (function () {
                 heading2.innerHTML = value.toString();
                 row1.appendChild(heading1);
                 row1.appendChild(heading2);
-                console.log(thead.firstChild);
                 if (thead.firstChild === null) {
                     thead.appendChild(row1);
                 }
@@ -107,107 +106,116 @@ var Produit = /** @class */ (function () {
                 }
             });
         };
-        if (resultat.product.product_name_fr) {
-            this.nom = resultat.product.product_name_fr;
-        }
-        else if (resultat.product.product_name_en) {
-            this.nom = resultat.product.product_name_en;
-        }
-        else {
-            this.nom = "inconnu";
-        }
-        if (resultat.product.brands_imported) {
-            this.marque = resultat.product.brands_imported;
-        }
-        else if (resultat.product.brands) {
-            this.marque = resultat.product.brands;
-        }
-        else {
-            this.marque = "inconnu";
-        }
-        if (resultat.product.quantity) {
-            this.quantite = resultat.product.quantity;
-        }
-        if (resultat.product.packaging_text_fr) {
-            this.conditionnement = resultat.product.packaging_text_fr;
-        }
-        if (resultat.product.categories_old) {
-            this.categories = resultat.product.categories_old;
-        }
-        if (resultat.product.preparation_fr) {
-            this.preparation = resultat.product.preparation_fr;
-        }
-        if (resultat.product.traces_imported) {
-            this.traces = resultat.product.traces_imported;
-        }
-        if (resultat.product.stores) {
-            this.magasins = resultat.product.stores;
-        }
-        if (resultat.product.conservation_conditions_fr) {
-            this.conservations = resultat.product.conservation_conditions_fr;
-        }
-        if (resultat.product.ingredients_text_with_allergens_fr) {
-            this.ingredients =
-                resultat.product.ingredients_text_with_allergens_fr;
-        }
-        else if (resultat.product.Ingredients_text_en) {
-            this.ingredients = resultat.product.Ingredients_text_en;
-        }
-        else {
-            this.ingredients = "Liste d'ingrédients indisponible";
-        }
-        if (resultat.product.image_small_url) {
-            this.imageProduit = resultat.product.image_small_url;
-        }
-        if (resultat.product.nutriscore_grade) {
-            this.imageNutri =
-                "/images/nutriscore-" +
-                    resultat.product.nutriscore_grade +
-                    ".svg";
-        }
-        if (resultat.product.ecoscore_grade) {
-            this.imageEco =
-                "/images/ecoscore-" + resultat.product.ecoscore_grade + ".svg";
-        }
-        if (resultat.product.nova_group) {
-            this.imageNova =
-                "/images/nova-group-" + resultat.product.nova_group + ".svg";
-        }
-        this.nutriments.set(" ", "pour" + resultat.product.nutrition_data_prepared_per);
-        if (resultat.product.nutriments["energy-kj"]) {
-            this.nutriments.set("Energie", this.testValeur(resultat.product.nutriments["energy-kj"]) +
-                " kj");
-        }
-        if (resultat.product.nutriments.fat_100g) {
-            this.nutriments.set("Matières grasses", this.testValeur(resultat.product.nutriments.fat_100g) + " g");
-        }
-        if (resultat.product.nutriments["saturated-fat_100g"]) {
-            this.nutriments.set("Acides gras saturés", this.testValeur(resultat.product.nutriments["saturated-fat_100g"]) + " g");
-        }
-        if (resultat.product.nutriments.carbohydrates_100g) {
-            this.nutriments.set("Glucides", this.testValeur(resultat.product.nutriments.carbohydrates_100g) + " g");
-        }
-        if (resultat.product.nutriments.sugars_100g) {
-            this.nutriments.set("Sucres", this.testValeur(resultat.product.nutriments.sugars_100g) + " g");
-        }
-        if (resultat.product.nutriments.fiber_modifier) {
-            this.nutriments.set("Fibres alimentaires", this.testModificateur(resultat.product.nutriments.fiber_modifier) +
-                " " +
-                this.testValeur(resultat.product.nutriments.fiber_100g) +
-                " g");
-        }
-        if (resultat.product.nutriments.proteins_100g) {
-            this.nutriments.set("Protéines", this.testValeur(resultat.product.nutriments.proteins_100g) +
-                " g");
-        }
-        if (resultat.product.nutriments.salt_100g) {
-            this.nutriments.set("Sel", this.testValeur(resultat.product.nutriments.salt_100g) + " g");
-        }
-        if (resultat.product.nutriments.alcohol) {
-            this.nutriments.set("Alcool", this.testValeur(resultat.product.nutriments.alcohol) + " g");
-        }
-        if (resultat.product.nutriments["fruits-vegetables-nuts-estimate-from-ingredients_100g"]) {
-            this.nutriments.set("Fruits‚ légumes‚ noix et huiles de colza‚ noix et olive (estimation par analyse de la liste des ingrédients)", this.testValeur(resultat.product.nutriments["fruits-vegetables-nuts-estimate-from-ingredients_100g"]) + " g");
+        if (resultat.status === 1) {
+            if (resultat.product.product_name_fr) {
+                this.nom = resultat.product.product_name_fr;
+            }
+            else if (resultat.product.product_name_en) {
+                this.nom = resultat.product.product_name_en;
+            }
+            else {
+                this.nom = "inconnu";
+            }
+            if (resultat.product.brands_imported) {
+                this.marque = resultat.product.brands_imported;
+            }
+            else if (resultat.product.brands) {
+                this.marque = resultat.product.brands;
+            }
+            else {
+                this.marque = "inconnu";
+            }
+            if (resultat.product.quantity) {
+                this.quantite = resultat.product.quantity;
+            }
+            if (resultat.product.packaging_text_fr) {
+                this.conditionnement = resultat.product.packaging_text_fr;
+            }
+            if (resultat.product.categories_old) {
+                this.categories = resultat.product.categories_old;
+            }
+            if (resultat.product.preparation_fr) {
+                this.preparation = resultat.product.preparation_fr;
+            }
+            if (resultat.product.traces_imported) {
+                this.traces = resultat.product.traces_imported;
+            }
+            if (resultat.product.stores) {
+                this.magasins = resultat.product.stores;
+            }
+            if (resultat.product.conservation_conditions_fr) {
+                this.conservations =
+                    resultat.product.conservation_conditions_fr;
+            }
+            if (resultat.product.ingredients_text_with_allergens_fr) {
+                this.ingredients =
+                    resultat.product.ingredients_text_with_allergens_fr;
+            }
+            else if (resultat.product.Ingredients_text_en) {
+                this.ingredients = resultat.product.Ingredients_text_en;
+            }
+            else {
+                this.ingredients = "Liste d'ingrédients indisponible";
+            }
+            if (resultat.product.image_small_url) {
+                this.imageProduit = resultat.product.image_small_url;
+            }
+            if (resultat.product.nutriscore_grade) {
+                this.imageNutri =
+                    "/images/nutriscore-" +
+                        resultat.product.nutriscore_grade +
+                        ".svg";
+            }
+            if (resultat.product.ecoscore_grade) {
+                this.imageEco =
+                    "/images/ecoscore-" +
+                        resultat.product.ecoscore_grade +
+                        ".svg";
+            }
+            if (resultat.product.nova_group) {
+                this.imageNova =
+                    "/images/nova-group-" +
+                        resultat.product.nova_group +
+                        ".svg";
+            }
+            this.nutriments.set(" ", "pour" + resultat.product.nutrition_data_prepared_per);
+            if (resultat.product.nutriments["energy-kj"]) {
+                this.nutriments.set("Energie", this.testValeur(resultat.product.nutriments["energy-kj"]) +
+                    " kj");
+            }
+            if (resultat.product.nutriments.fat_100g) {
+                this.nutriments.set("Matières grasses", this.testValeur(resultat.product.nutriments.fat_100g) + " g");
+            }
+            if (resultat.product.nutriments["saturated-fat_100g"]) {
+                this.nutriments.set("Acides gras saturés", this.testValeur(resultat.product.nutriments["saturated-fat_100g"]) + " g");
+            }
+            if (resultat.product.nutriments.carbohydrates_100g) {
+                this.nutriments.set("Glucides", this.testValeur(resultat.product.nutriments.carbohydrates_100g) + " g");
+            }
+            if (resultat.product.nutriments.sugars_100g) {
+                this.nutriments.set("Sucres", this.testValeur(resultat.product.nutriments.sugars_100g) +
+                    " g");
+            }
+            if (resultat.product.nutriments.fiber_modifier) {
+                this.nutriments.set("Fibres alimentaires", this.testModificateur(resultat.product.nutriments.fiber_modifier) +
+                    " " +
+                    this.testValeur(resultat.product.nutriments.fiber_100g) +
+                    " g");
+            }
+            if (resultat.product.nutriments.proteins_100g) {
+                this.nutriments.set("Protéines", this.testValeur(resultat.product.nutriments.proteins_100g) +
+                    " g");
+            }
+            if (resultat.product.nutriments.salt_100g) {
+                this.nutriments.set("Sel", this.testValeur(resultat.product.nutriments.salt_100g) +
+                    " g");
+            }
+            if (resultat.product.nutriments.alcohol) {
+                this.nutriments.set("Alcool", this.testValeur(resultat.product.nutriments.alcohol) + " g");
+            }
+            if (resultat.product.nutriments["fruits-vegetables-nuts-estimate-from-ingredients_100g"]) {
+                this.nutriments.set("Fruits‚ légumes‚ noix et huiles de colza‚ noix et olive (estimation par analyse de la liste des ingrédients)", this.testValeur(resultat.product.nutriments["fruits-vegetables-nuts-estimate-from-ingredients_100g"]) + " g");
+            }
         }
     }
     Produit.prototype.getNom = function () {
@@ -369,17 +377,25 @@ var listeFields = [
     "fruits-vegetables-nuts-estimate-from-ingredients_100g",
 ];
 var lancement = function (codeBarre) {
-    fetch("https://fr.openfoodfacts.org/api/v2/product/" +
-        listeFields.toString +
-        codeBarre)
-        //@TODO: ajouter une verification du status : 1 avant de creer le produit
+    fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
         .then(function (response) { return response.json(); })
         .then(function (data) {
-        var prod = new Produit(data);
-        prod.afficherTableau(prod.getNutriments());
-        afficherCaracteristiques(prod);
-        afficherImages(prod);
-        afficherIngredients(prod);
+        if (data.status === 1) {
+            console.log(listeFields.toString());
+            console.table(data);
+            console.log(data);
+            var prod = new Produit(data);
+            prod.afficherTableau(prod.getNutriments());
+            afficherCaracteristiques(prod);
+            afficherImages(prod);
+            afficherIngredients(prod);
+        }
+        else {
+            alert("Le produit n'est pas présent dans la base de données");
+        }
+    })["catch"](function (err) {
+        alert("Le produit n'est pas présent dans la base de données");
+        console.log(err.message);
     });
 };
 var section = document.querySelector(".section");
