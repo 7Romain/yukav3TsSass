@@ -10,8 +10,9 @@
         "lint:css": "npx stylelint styles/*.css --formatter verbose",
         "lint:html": "npx htmlhint **/*.html --ignore coverage/**/*.html, hint-report/**/*.html",
         "checkPrettier": "npx prettier --check index.html",
-        "watch-tsCompil": "tsc --watch --out ../js/index.js ./accordeon.ts ./Produit.ts ./images.ts ./caracteristiques.ts ./ingredients.ts ./index.ts",
+        "watch-tsCompil": "tsc --watch --out ../js/index.js ./accordeon.ts ./Produit.ts ./images.ts ./caracteristiques.ts ./ingredients.ts ./index.ts --source-map",
         "watch-scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css",
+        "watch-scssWatchMAP": "sass --verbose --watch  ./styles/sass/style.scss:./styles/css/style.css --source-map",
         "start": "concurrently \"npm:watch-*\""
     },
     "repository": {
@@ -22,7 +23,6 @@
         "foodfact",
         "yuka",
         "aliment",
-        "nutriments",
         "nutriscore",
         "ecoscore",
         "nourriture"

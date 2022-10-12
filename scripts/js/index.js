@@ -410,12 +410,14 @@ var listeFields = [
 /**
  *
  *
+ *
  * @param {number} codeBarre
  */
 var lancement = function (codeBarre) {
     fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
         .then(function (response) { return response.json(); })
         .then(function (data) {
+        console.log("coucou");
         section.classList.remove("sectionVisible");
         section.classList.add("cacher");
         console.log(data);
@@ -470,3 +472,4 @@ formulaire === null || formulaire === void 0 ? void 0 : formulaire.addEventListe
         alert("veuillez entrer un code barre valide");
     }
 });
+//# sourceMappingURL=index.js.map

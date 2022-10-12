@@ -80,12 +80,14 @@ type Requetes = {
 /**
  *
  *
+ *
  * @param {number} codeBarre
  */
 const lancement = function (codeBarre: number) {
     fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
         .then((response) => response.json())
         .then(function (data: Requetes) {
+            console.log("coucou");
             section.classList.remove("sectionVisible");
             section.classList.add("cacher");
             console.log(data);
