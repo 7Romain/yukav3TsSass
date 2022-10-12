@@ -53,7 +53,19 @@ class Produit {
      */
 
     afficherTableau = function (result: Map<string, number | string>) {
+        const accordeonNutri = document.querySelector(
+            "#tableau-nutritionnel > button:nth-child(1)"
+        ) as HTMLElement;
+        const accordeonNutriPane = document.querySelector(
+            "#tableau-nutritionnel > div:nth-child(2)"
+        ) as HTMLElement;
+
         const tableNut = document.getElementById("tableNutri") as HTMLElement;
+        accordeonNutri.classList.add("cacher");
+        tableNut.classList.add("cacher");
+        accordeonNutriPane.classList.add("cacher");
+        accordeonNutriPane.removeAttribute("style");
+
         tableNut.innerHTML = "";
         const tableauNutri = document.createElement("table");
         const thead = document.createElement("thead");
@@ -92,6 +104,11 @@ class Produit {
                 tbody.appendChild(row1);
             }
         });
+        if (result.size > 1) {
+            accordeonNutri.classList.remove("cacher");
+            tableNut.classList.remove("cacher");
+            accordeonNutriPane.classList.remove("cacher");
+        }
     };
 
     /**

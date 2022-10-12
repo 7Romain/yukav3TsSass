@@ -1,7 +1,3 @@
-/**
- * When the user clicks on an element with the class "accordion", toggle between hiding and showing the
- * element that follows it.
- */
 function genererAccordeon() {
     var accordeon = document.getElementsByClassName("accordion");
     var accordeon2 = Array.from(accordeon);
@@ -14,16 +10,13 @@ function genererAccordeon() {
             var panel = element.nextElementSibling;
             if (panel.style.display === "block") {
                 panel.style.display = "none";
-            } else {
+            }
+            else {
                 panel.style.display = "block";
             }
         });
     };
-    for (
-        var _i = 0, accordeon2_1 = accordeon2;
-        _i < accordeon2_1.length;
-        _i++
-    ) {
+    for (var _i = 0, accordeon2_1 = accordeon2; _i < accordeon2_1.length; _i++) {
         var element = accordeon2_1[_i];
         _loop_1(element);
     }
@@ -64,7 +57,8 @@ var Produit = /** @class */ (function () {
         this.testValeur = function (valeur) {
             if (valeur !== undefined) {
                 return valeur;
-            } else {
+            }
+            else {
                 return "?";
             }
         };
@@ -76,9 +70,11 @@ var Produit = /** @class */ (function () {
         this.testModificateur = function (valeur) {
             if (valeur === ">") {
                 return ">";
-            } else if (valeur === "<") {
+            }
+            else if (valeur === "<") {
                 return "<";
-            } else {
+            }
+            else {
                 return "";
             }
         };
@@ -89,7 +85,13 @@ var Produit = /** @class */ (function () {
          * de l'eau qui mouille
          */
         this.afficherTableau = function (result) {
+            var accordeonNutri = document.querySelector("#tableau-nutritionnel > button:nth-child(1)");
+            var accordeonNutriPane = document.querySelector("#tableau-nutritionnel > div:nth-child(2)");
             var tableNut = document.getElementById("tableNutri");
+            accordeonNutri.classList.add("cacher");
+            tableNut.classList.add("cacher");
+            accordeonNutriPane.classList.add("cacher");
+            accordeonNutriPane.removeAttribute("style");
             tableNut.innerHTML = "";
             var tableauNutri = document.createElement("table");
             var thead = document.createElement("thead");
@@ -103,14 +105,16 @@ var Produit = /** @class */ (function () {
                 var heading1;
                 if (heading1 === undefined) {
                     heading1 = document.createElement("th");
-                } else {
+                }
+                else {
                     heading1 = document.createElement("td");
                 }
                 heading1.innerHTML = key;
                 var heading2;
                 if (heading2 === undefined) {
                     heading2 = document.createElement("th");
-                } else {
+                }
+                else {
                     heading2 = document.createElement("td");
                 }
                 heading2.innerHTML = value.toString();
@@ -118,24 +122,34 @@ var Produit = /** @class */ (function () {
                 row1.appendChild(heading2);
                 if (thead.firstChild === null) {
                     thead.appendChild(row1);
-                } else {
+                }
+                else {
                     tbody.appendChild(row1);
                 }
             });
+            if (result.size > 1) {
+                accordeonNutri.classList.remove("cacher");
+                tableNut.classList.remove("cacher");
+                accordeonNutriPane.classList.remove("cacher");
+            }
         };
         if (resultat.status === 1) {
             if (resultat.product.product_name_fr) {
                 this.nom = resultat.product.product_name_fr;
-            } else if (resultat.product.product_name_en) {
+            }
+            else if (resultat.product.product_name_en) {
                 this.nom = resultat.product.product_name_en;
-            } else {
+            }
+            else {
                 this.nom = "inconnu";
             }
             if (resultat.product.brands_imported) {
                 this.marque = resultat.product.brands_imported;
-            } else if (resultat.product.brands) {
+            }
+            else if (resultat.product.brands) {
                 this.marque = resultat.product.brands;
-            } else {
+            }
+            else {
                 this.marque = "inconnu";
             }
             if (resultat.product.quantity) {
@@ -163,9 +177,11 @@ var Produit = /** @class */ (function () {
             if (resultat.product.ingredients_text_with_allergens_fr) {
                 this.ingredients =
                     resultat.product.ingredients_text_with_allergens_fr;
-            } else if (resultat.product.Ingredients_text_en) {
+            }
+            else if (resultat.product.Ingredients_text_en) {
                 this.ingredients = resultat.product.Ingredients_text_en;
-            } else {
+            }
+            else {
                 this.ingredients = "Liste d'ingrédients indisponible";
             }
             if (resultat.product.image_small_url) {
@@ -174,107 +190,58 @@ var Produit = /** @class */ (function () {
             if (resultat.product.nutriscore_grade) {
                 this.imageNutri =
                     "/images/nutriscore-" +
-                    resultat.product.nutriscore_grade +
-                    ".svg";
+                        resultat.product.nutriscore_grade +
+                        ".svg";
             }
             if (resultat.product.ecoscore_grade) {
                 this.imageEco =
                     "/images/ecoscore-" +
-                    resultat.product.ecoscore_grade +
-                    ".svg";
+                        resultat.product.ecoscore_grade +
+                        ".svg";
             }
             if (resultat.product.nova_group) {
                 this.imageNova =
                     "/images/nova-group-" +
-                    resultat.product.nova_group +
-                    ".svg";
+                        resultat.product.nova_group +
+                        ".svg";
             }
-            this.nutriments.set(
-                " ",
-                "pour" + resultat.product.nutrition_data_prepared_per
-            );
+            this.nutriments.set(" ", "pour" + resultat.product.nutrition_data_prepared_per);
             if (resultat.product.nutriments["energy-kj"]) {
-                this.nutriments.set(
-                    "Energie",
-                    this.testValeur(resultat.product.nutriments["energy-kj"]) +
-                        " kj"
-                );
+                this.nutriments.set("Energie", this.testValeur(resultat.product.nutriments["energy-kj"]) +
+                    " kj");
             }
             if (resultat.product.nutriments.fat_100g) {
-                this.nutriments.set(
-                    "Matières grasses",
-                    this.testValeur(resultat.product.nutriments.fat_100g) + " g"
-                );
+                this.nutriments.set("Matières grasses", this.testValeur(resultat.product.nutriments.fat_100g) + " g");
             }
             if (resultat.product.nutriments["saturated-fat_100g"]) {
-                this.nutriments.set(
-                    "Acides gras saturés",
-                    this.testValeur(
-                        resultat.product.nutriments["saturated-fat_100g"]
-                    ) + " g"
-                );
+                this.nutriments.set("Acides gras saturés", this.testValeur(resultat.product.nutriments["saturated-fat_100g"]) + " g");
             }
             if (resultat.product.nutriments.carbohydrates_100g) {
-                this.nutriments.set(
-                    "Glucides",
-                    this.testValeur(
-                        resultat.product.nutriments.carbohydrates_100g
-                    ) + " g"
-                );
+                this.nutriments.set("Glucides", this.testValeur(resultat.product.nutriments.carbohydrates_100g) + " g");
             }
             if (resultat.product.nutriments.sugars_100g) {
-                this.nutriments.set(
-                    "Sucres",
-                    this.testValeur(resultat.product.nutriments.sugars_100g) +
-                        " g"
-                );
+                this.nutriments.set("Sucres", this.testValeur(resultat.product.nutriments.sugars_100g) +
+                    " g");
             }
             if (resultat.product.nutriments.fiber_modifier) {
-                this.nutriments.set(
-                    "Fibres alimentaires",
-                    this.testModificateur(
-                        resultat.product.nutriments.fiber_modifier
-                    ) +
-                        " " +
-                        this.testValeur(
-                            resultat.product.nutriments.fiber_100g
-                        ) +
-                        " g"
-                );
+                this.nutriments.set("Fibres alimentaires", this.testModificateur(resultat.product.nutriments.fiber_modifier) +
+                    " " +
+                    this.testValeur(resultat.product.nutriments.fiber_100g) +
+                    " g");
             }
             if (resultat.product.nutriments.proteins_100g) {
-                this.nutriments.set(
-                    "Protéines",
-                    this.testValeur(resultat.product.nutriments.proteins_100g) +
-                        " g"
-                );
+                this.nutriments.set("Protéines", this.testValeur(resultat.product.nutriments.proteins_100g) +
+                    " g");
             }
             if (resultat.product.nutriments.salt_100g) {
-                this.nutriments.set(
-                    "Sel",
-                    this.testValeur(resultat.product.nutriments.salt_100g) +
-                        " g"
-                );
+                this.nutriments.set("Sel", this.testValeur(resultat.product.nutriments.salt_100g) +
+                    " g");
             }
             if (resultat.product.nutriments.alcohol) {
-                this.nutriments.set(
-                    "Alcool",
-                    this.testValeur(resultat.product.nutriments.alcohol) + " g"
-                );
+                this.nutriments.set("Alcool", this.testValeur(resultat.product.nutriments.alcohol) + " g");
             }
-            if (
-                resultat.product.nutriments[
-                    "fruits-vegetables-nuts-estimate-from-ingredients_100g"
-                ]
-            ) {
-                this.nutriments.set(
-                    "Fruits‚ légumes‚ noix et huiles de colza‚ noix et olive (estimation par analyse de la liste des ingrédients)",
-                    this.testValeur(
-                        resultat.product.nutriments[
-                            "fruits-vegetables-nuts-estimate-from-ingredients_100g"
-                        ]
-                    ) + " g"
-                );
+            if (resultat.product.nutriments["fruits-vegetables-nuts-estimate-from-ingredients_100g"]) {
+                this.nutriments.set("Fruits‚ légumes‚ noix et huiles de colza‚ noix et olive (estimation par analyse de la liste des ingrédients)", this.testValeur(resultat.product.nutriments["fruits-vegetables-nuts-estimate-from-ingredients_100g"]) + " g");
             }
         }
     }
@@ -324,11 +291,7 @@ var Produit = /** @class */ (function () {
         return this.nutriments;
     };
     return Produit;
-})();
-/**
- *  afficherImages prend une instance de Produit en paramètre et met les url des images
- *
- */
+}());
 var afficherImages = function (prod) {
     var imgProduct = document.getElementById("imgProduct");
     imgProduct.setAttribute("src", prod.getImageProduit());
@@ -339,77 +302,70 @@ var afficherImages = function (prod) {
     var imgEcoscore = document.getElementById("imgEcoscore");
     imgEcoscore.setAttribute("src", prod.getImageEco());
 };
-/**
- *A JavaScript code that is used to create a product object and display the product information.
- */
 var afficherCaracteristiques = function (prod) {
     var caracteristiques = document.getElementById("carac");
     var texte = "";
     if (prod.getNom()) {
         texte +=
             "<span class= 'gras' >Nom : </span>" +
-            prod.getNom() +
-            "<br /><br />";
-    } else {
+                prod.getNom() +
+                "<br /><br />";
+    }
+    else {
         texte += "Nom inconnu" + "<br /><br />";
     }
     if (prod.getMarque()) {
         texte +=
             "<span class= 'gras' >Marque : </span>" +
-            prod.getMarque() +
-            "<br /><br />";
+                prod.getMarque() +
+                "<br /><br />";
     }
     if (prod.getQuantite()) {
         texte +=
             "<span class= 'gras' >Quantité : </span>" +
-            prod.getQuantite() +
-            "<br /><br />";
+                prod.getQuantite() +
+                "<br /><br />";
     }
     if (prod.getConditionnement()) {
         texte +=
             "<span class= 'gras' >Conditionnement : </span>" +
-            prod.getConditionnement() +
-            "<br /><br />";
+                prod.getConditionnement() +
+                "<br /><br />";
     }
     if (prod.getCategories()) {
         texte +=
             "<span class= 'gras' >Catégories : </span>" +
-            prod.getCategories() +
-            "<br /><br />";
+                prod.getCategories() +
+                "<br /><br />";
     }
     if (prod.getPreparation()) {
         texte +=
             "<span class= 'gras' >Préparation : </span>" +
-            prod.getPreparation() +
-            "<br /><br />";
+                prod.getPreparation() +
+                "<br /><br />";
     }
     if (prod.getTraces()) {
         texte +=
             "<span class= 'gras' >Traces : </span>" +
-            prod.getTraces() +
-            "<br /><br />";
+                prod.getTraces() +
+                "<br /><br />";
     }
     if (prod.getMagasins()) {
         texte +=
             "<span class= 'gras' >Magasins : </span>" +
-            prod.getMagasins() +
-            "<br /><br />";
+                prod.getMagasins() +
+                "<br /><br />";
     }
     if (prod.getConservations()) {
         texte +=
             "<span class= 'gras' >Conservation : </span>" +
-            prod.getConservations() +
-            "<br /><br />";
+                prod.getConservations() +
+                "<br /><br />";
     }
     if (caracteristiques) {
         caracteristiques.innerHTML = texte;
     }
 };
-/**
- *
- *Permet avec un objet produit en paramètre de remplir le volet ingrédients de l'accordéon.
- * @param {*} prod
- */
 var afficherIngredients = function (prod) {
     var ingredients = document.getElementById("listeIngredients");
     ingredients.innerHTML = prod.getIngredient();
@@ -452,57 +408,52 @@ var listeFields = [
     "fruits-vegetables-nuts-estimate-from-ingredients_100g",
 ];
 /**
- *Création de l'objet produit et affichage des informations
+ *
  *
  * @param {number} codeBarre
  */
 var lancement = function (codeBarre) {
     fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
-        .then(function (response) {
-            return response.json();
-        })
+        .then(function (response) { return response.json(); })
         .then(function (data) {
+        section.classList.remove("sectionVisible");
+        section.classList.add("cacher");
+        console.log(data);
+        if (data.status === 1) {
+            console.log(listeFields.toString());
+            console.table(data);
+            console.log(data);
+            var prod = new Produit(data);
+            prod.afficherTableau(prod.getNutriments());
+            afficherCaracteristiques(prod);
+            afficherImages(prod);
+            afficherIngredients(prod);
+            section.classList.add("sectionVisible");
+            section.classList.remove("cacher");
+        }
+        else {
             section.classList.remove("sectionVisible");
             section.classList.add("cacher");
-            console.log(data);
-            if (data.status === 1) {
-                console.log(listeFields.toString());
-                console.table(data);
-                console.log(data);
-                var prod = new Produit(data);
-                prod.afficherTableau(prod.getNutriments());
-                afficherCaracteristiques(prod);
-                afficherImages(prod);
-                afficherIngredients(prod);
-                section.classList.add("sectionVisible");
-                section.classList.remove("cacher");
-            } else {
-                section.classList.remove("sectionVisible");
-                section.classList.add("cacher");
-                window.alert(
-                    "Le produit n'est pas présent dans la base de données"
-                );
-                console.log("pas trouvé");
-            }
-        })
-        ["catch"](function (err) {
-            alert("Le produit n'est pas présent dans la base de données");
-            console.log(err.message);
-            alert("Le produit n'est pas présent dans la base de données");
-        });
+            window.alert("Le produit n'est pas présent dans la base de données");
+            console.log("pas trouvé");
+        }
+    })["catch"](function (err) {
+        alert("Le produit n'est pas présent dans la base de données");
+        console.log(err.message);
+        alert("Le produit n'est pas présent dans la base de données");
+    });
 };
 /**
  * Ajoute un écouteur sur le bouton rechercher qui lance la création de l'objet produit et
  * rend visible la fiche produit.
  */
-formulaire === null || formulaire === void 0
-    ? void 0
-    : formulaire.addEventListener("submit", function (e) {
-          var codeBarre = Number(code.value);
-          if (regex.test(codeBarre.toString())) {
-              e.preventDefault();
-              lancement(codeBarre);
-          } else {
-              alert("veuillez entrer un code barre valide");
-          }
-      });
+formulaire === null || formulaire === void 0 ? void 0 : formulaire.addEventListener("submit", function (e) {
+    var codeBarre = Number(code.value);
+    if (regex.test(codeBarre.toString())) {
+        e.preventDefault();
+        lancement(codeBarre);
+    }
+    else {
+        alert("veuillez entrer un code barre valide");
+    }
+});

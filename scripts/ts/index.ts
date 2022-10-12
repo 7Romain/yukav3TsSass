@@ -93,9 +93,7 @@ const lancement = function (codeBarre: number) {
                 console.log(listeFields.toString());
                 console.table(data);
                 console.log(data);
-
                 const prod: Produit = new Produit(data);
-
                 prod.afficherTableau(prod.getNutriments());
                 afficherCaracteristiques(prod);
                 afficherImages(prod);

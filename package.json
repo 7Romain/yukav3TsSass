@@ -10,14 +10,9 @@
         "lint:css": "npx stylelint styles/*.css --formatter verbose",
         "lint:html": "npx htmlhint **/*.html --ignore coverage/**/*.html, hint-report/**/*.html",
         "checkPrettier": "npx prettier --check index.html",
-        "watch-tsWatch": "tsc --watch ./scripts/ts/index.ts --outDir ./scripts/js",
-        "watch-tsc2": "tsc --watch ./scripts/ts/accordeon.ts --outDir ./scripts/js",
-        "watch-tsc3": "tsc --watch ./scripts/ts/caracteristiques.ts --outDir ./scripts/js",
-        "watch-tsc4": "tsc --watch ./scripts/ts/images.ts --outDir ./scripts/js",
-        "watch-tsc5": "tsc --watch yukav3TsSassingredients.ts --outDir ./scripts/js",
+        "watch-tsCompil": "tsc --watch --out ../js/index.js ./accordeon.ts ./Produit.ts ./images.ts ./caracteristiques.ts ./ingredients.ts ./index.ts",
         "watch-scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css",
-        "start": "concurrently \"npm:watch-*\"",
-        "TscCompiler": "tsc --watch --out /scripts/js/index.js /scripts/ts/accordeon.ts /scripts/ts/Produit.ts /scripts/ts/images.ts /scripts/ts/caracteristiques.ts /scripts/ts/ingredients.ts /scripts/ts/index.ts"
+        "start": "concurrently \"npm:watch-*\""
     },
     "repository": {
         "type": "git",
