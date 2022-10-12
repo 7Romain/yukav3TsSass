@@ -116,6 +116,19 @@ const lancement = function (codeBarre: number) {
         });
 };
 
+/**Fonction pour replier tt les accordéons
+ *
+ */
+function repli() {
+    const paneAccordeon = document.getElementsByClassName("panel");
+    const tablePaneAccordeon = Array.from(paneAccordeon);
+
+    for (const element of tablePaneAccordeon) {
+        const panel = element as HTMLElement;
+        panel.style.display = "none";
+    }
+}
+
 /**
  * Ajoute un écouteur sur le bouton rechercher qui lance la création de l'objet produit et
  * rend visible la fiche produit.
@@ -123,6 +136,8 @@ const lancement = function (codeBarre: number) {
 
 formulaire?.addEventListener("submit", function (e) {
     const codeBarre: number = Number((code as HTMLInputElement).value);
+    repli();
+
     if (regex.test(codeBarre.toString())) {
         e.preventDefault();
         lancement(codeBarre);

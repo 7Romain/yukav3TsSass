@@ -443,12 +443,25 @@ var lancement = function (codeBarre) {
         alert("Le produit n'est pas présent dans la base de données");
     });
 };
+/**Fonction pour replier tt les accordéons
+ *
+ */
+function repli() {
+    var paneAccordeon = document.getElementsByClassName("panel");
+    var tablePaneAccordeon = Array.from(paneAccordeon);
+    for (var _i = 0, tablePaneAccordeon_1 = tablePaneAccordeon; _i < tablePaneAccordeon_1.length; _i++) {
+        var element = tablePaneAccordeon_1[_i];
+        var panel = element;
+        panel.style.display = "none";
+    }
+}
 /**
  * Ajoute un écouteur sur le bouton rechercher qui lance la création de l'objet produit et
  * rend visible la fiche produit.
  */
 formulaire === null || formulaire === void 0 ? void 0 : formulaire.addEventListener("submit", function (e) {
     var codeBarre = Number(code.value);
+    repli();
     if (regex.test(codeBarre.toString())) {
         e.preventDefault();
         lancement(codeBarre);
