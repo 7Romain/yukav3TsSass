@@ -481,7 +481,6 @@ tbody tr:nth-child(even) {
 @media (max-width: 576px) {
   .footer__liste > li {
     display: block;
-    width: auto;
     margin-top: 5px;
     margin-bottom: 5px;
     background-color: rgb(200, 243, 247);
