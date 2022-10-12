@@ -1,3 +1,11 @@
+const section: HTMLElement = document.querySelector(".section") as HTMLElement;
+const code: HTMLElement = document.getElementById(
+    "rechercher"
+) as HTMLInputElement;
+const formulaire: HTMLFormElement = document.querySelector(
+    ".formulaire__demande"
+) as HTMLFormElement;
+const regex: RegExp = /[0-9]{8,13}/;
 genererAccordeon();
 const listeFields: string[] = [
     "&fields=",
@@ -69,11 +77,18 @@ type Requetes = {
     status: number;
     status_verbose: string;
 };
-
+/**
+ *
+ *
+ * @param {number} codeBarre
+ */
 const lancement = function (codeBarre: number) {
     fetch("https://fr.openfoodfacts.org/api/v2/product/" + codeBarre)
         .then((response) => response.json())
         .then(function (data: Requetes) {
+            section.classList.remove("sectionVisible");
+            section.classList.add("cacher");
+            console.log(data);
             if (data.status === 1) {
                 console.log(listeFields.toString());
                 console.table(data);
@@ -85,24 +100,23 @@ const lancement = function (codeBarre: number) {
                 afficherCaracteristiques(prod);
                 afficherImages(prod);
                 afficherIngredients(prod);
+                section.classList.add("sectionVisible");
+                section.classList.remove("cacher");
             } else {
-                alert("Le produit n'est pas présent dans la base de données");
+                section.classList.remove("sectionVisible");
+                section.classList.add("cacher");
+                window.alert(
+                    "Le produit n'est pas présent dans la base de données"
+                );
+                console.log("pas trouvé");
             }
         })
         .catch(function (err) {
             alert("Le produit n'est pas présent dans la base de données");
             console.log(err.message);
+            alert("Le produit n'est pas présent dans la base de données");
         });
 };
-
-const section: HTMLElement = document.querySelector(".section") as HTMLElement;
-const code: HTMLElement = document.getElementById(
-    "rechercher"
-) as HTMLInputElement;
-const formulaire: HTMLFormElement = document.querySelector(
-    ".formulaire__demande"
-) as HTMLFormElement;
-const regex: RegExp = /[0-9]{8,13}/;
 
 /**
  * Ajoute un écouteur sur le bouton rechercher qui lance la création de l'objet produit et
@@ -114,8 +128,6 @@ formulaire?.addEventListener("submit", function (e) {
     if (regex.test(codeBarre.toString())) {
         e.preventDefault();
         lancement(codeBarre);
-
-        section.classList.add("sectionVisible");
     } else {
         alert("veuillez entrer un code barre valide");
     }

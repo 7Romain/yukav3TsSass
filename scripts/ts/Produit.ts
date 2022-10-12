@@ -1,3 +1,6 @@
+/**
+ * This class is used to store the data of the product
+ */
 class Produit {
     private nom: string = "";
     private marque: string = "";
@@ -42,6 +45,12 @@ class Produit {
             return "";
         }
     };
+    /**
+     *
+     *
+     * @memberof Produit
+     * de l'eau qui mouille
+     */
 
     afficherTableau = function (result: Map<string, number | string>) {
         const tableNut = document.getElementById("tableNutri") as HTMLElement;
@@ -85,6 +94,13 @@ class Produit {
         });
     };
 
+    /**
+     * It takes the result of the request to the OpenFoodFacts API and creates a new Product object with
+     * the data from the request
+     * @constructor
+     * @memberof Produit
+     * @param {Requetes} resultat - Requetes
+     */
     public constructor(resultat: Requetes) {
         if (resultat.status === 1) {
             if (resultat.product.product_name_fr) {

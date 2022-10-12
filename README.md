@@ -4,6 +4,8 @@
 
 API : <https://fr.openfoodfacts.org>
 
+Doc : Documentation dans le dossier documentation. ( Le mal c'est pas bien )
+
 Autheur : Romain.7
 
 Licence : Creative Commons Zero

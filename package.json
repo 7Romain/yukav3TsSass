@@ -17,7 +17,7 @@
         "watch-tsc5": "tsc --watch yukav3TsSassingredients.ts --outDir ./scripts/js",
         "watch-scssWatch": "sass --verbose --watch ./styles/sass/style.scss:./styles/css/style.css",
         "start": "concurrently \"npm:watch-*\"",
-        "TscCompiler": "cd scripts/ts && tsc --out ../js/index.js ./accordeon.ts ./Produit.ts ./images.ts ./caracteristiques.ts ./ingredients.ts ./index.ts"
+        "TscCompiler": "tsc --watch --out /scripts/js/index.js /scripts/ts/accordeon.ts /scripts/ts/Produit.ts /scripts/ts/images.ts /scripts/ts/caracteristiques.ts /scripts/ts/ingredients.ts /scripts/ts/index.ts"
     },
     "repository": {
         "type": "git",
@@ -58,7 +58,7 @@
         "jest": "^28.1.3",
         "jest-environment-jsdom": "^28.1.3",
         "jest-html-reporters": "^3.0.10",
-        "jsdoc": "^3.6.10",
+        "jsdoc": "^3.6.11",
         "jsdom": "^20.0.0",
         "markdownlint": "^0.26.2",
         "markdownlint-cli": "^0.32.0",

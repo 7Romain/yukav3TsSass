@@ -27,5 +27,6 @@
         "titleBar.inactiveBackground": "#9370db99",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#9370DB"
+    "peacock.color": "#9370DB",
+    "livePreview.defaultPreviewPath": "c:\\Users\\Oziri\\Documents\\CDA\\Projet Web\\yukav3TsSass\\scripts\\js\\out\\index.html"
 }
