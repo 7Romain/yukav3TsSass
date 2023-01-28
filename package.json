@@ -79,7 +79,7 @@
     },
     "homepage": "https://github.com/7Romain/yukav3TsSass#readme",
     "dependencies": {
-        "@types/express": "^4.17.14",
+        "@types/express": "^4.17.15",
         "axios": "^1.0.0",
         "node-fetch": "^3.2.10",
         "sass": "^1.55.0"
